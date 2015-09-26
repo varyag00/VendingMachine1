@@ -477,7 +477,6 @@ public class VendingMachineFactory implements IVendingMachineFactory {
     	try {
     		vm.configurePops(popNames, popCosts);
     	}
-    	
     	catch (Exception e){
     		throw e;
     	}
@@ -486,6 +485,13 @@ public class VendingMachineFactory implements IVendingMachineFactory {
     @Override
     public void load(List<Integer> coinCounts, List<Integer> popCounts) {
 	// TODO
+    	
+    	try {
+    		vm.load(coinCounts, popCounts);
+    	}
+    	catch(Exception e){
+    		throw e;
+    	}
     }
 
     @Override

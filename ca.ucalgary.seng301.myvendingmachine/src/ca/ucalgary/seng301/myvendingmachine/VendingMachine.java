@@ -60,6 +60,9 @@ public class VendingMachine {
 		//list lengths must be identical
 		if (popNames.size() != popCosts.size())
 			throw new IllegalArgumentException("Every pop must have a corresponding valid cost");
+		//number of names and number of costs must be equal to the number of buttons
+		if (popNames.size() != ButtonBank.length)
+			throw new IllegalArgumentException("Number of pop names and number of pop costs must be equal to the number of buttons");
 		//pop costs cannot be negative
 		for (int cost : popCosts){
 			if (cost < 0)
@@ -72,6 +75,33 @@ public class VendingMachine {
 			//creating new button with the given pop name and pop cost
 			ButtonBank[i] = new Button(popNames.get(i), popCosts.get(i));
 		}
+	}
+	
+	public void load(List<Integer> coinCounts, List<Integer> popCounts){
+		//error checking
+		
+		//coin counts and pop counts must be non-negative
+		for (int count : coinCounts){
+			if (count < 0)
+				throw new IllegalArgumentException("Coin loading cannot be negative");
+		}
+		for (int count : popCounts){
+			if (count < 0)
+				throw new IllegalArgumentException("Pop loading cannot be negative");
+		}
+		
+		//loading coin counts and pop counts
+		for (int i = 0; i < coinCounts.size(); i++){
+			PiggyBank[i].setCount(coinCounts.get(i));
+			
+			ButtonBank[i].getPop().setCount(popCounts.get(i));
+		}
+	}
+	
+	//This command causes the total value of remaining unused coins, total value of payment coins, 
+	//and individual names of unsold pops to be unloaded from the interior of the machine (for checking).
+	public List<Object> unload(){
+		
 	}
 }
 

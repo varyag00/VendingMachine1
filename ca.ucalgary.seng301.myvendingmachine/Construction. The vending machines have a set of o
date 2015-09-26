@@ -4,6 +4,8 @@ Construction. The vending machines have a set of one or more selection buttons a
 
 Configuration. Each of the selection buttons corresponds to a kind of pop. The name of each kind of pop and its price can be specified (and changed). Selection buttons can share the same name or the same price or both.
 
+	--DONE
+
 Loading and unloading. The machine can be loaded with a set of coins (for change) and a set of pops (to be sold). These can be unloaded from the machine at any time, along with any money that has been used to buy pops.
 
 Purchasing. Purchasing occurs by inserting an appropriate number of coins into the machine and pressing the appropriate button. If the value of the coins is sufficient to pay for the pop, the pop is dispensed and any change owing is returned. If the desired kind of pop is empty, nothing is returned and the state does not change. If the cost is higher than the value entered, nothing is returned and the state does not change. There is no coin return button on this version of the machine.
