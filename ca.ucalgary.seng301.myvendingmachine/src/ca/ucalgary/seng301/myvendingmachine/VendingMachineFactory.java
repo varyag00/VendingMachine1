@@ -425,6 +425,8 @@ import ca.ucalgary.seng301.vendingmachine.parser.ParseException;
  */
 
 public class VendingMachineFactory implements IVendingMachineFactory {
+	private VendingMachine vm;
+	
     public static void main(String[] args) throws ParseException, FileNotFoundException {
 	// TODO Here, call the script or scripts you want to use to test your
 	// Vending Machine
@@ -458,6 +460,22 @@ public class VendingMachineFactory implements IVendingMachineFactory {
     @Override
     public void construct(List<Integer> coinKinds, int selectionButtonCount) {
 	// TODO
+    	
+    	//must be at least one coin type
+    	if (coinKinds.size() == 0){
+    		throw new IllegalArgumentException("There must be at least one valid coin type");
+    	}
+    	
+    	//test for duplicates
+    	for (int i=0; i < coinKinds.size(); i++){
+    		for (int k = i+1; k < coinKinds.size(); k++){
+    			if (coinKinds.get(k) == coinKinds.get(i) && i != k)
+    	    		throw new IllegalArgumentException("Coin values must be unique");
+    		}
+    	}    	
+
+    	//creates a new vending machine object with the specified arguments
+    	VendingMachine vm = new VendingMachine (coinKinds, selectionButtonCount);
     }
 
     @Override

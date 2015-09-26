@@ -1,0 +1,14 @@
+Construction. The vending machines have a set of one or more selection buttons and operate on a set of one or more coin kinds (these details cannot be changed once the machine is constructed). Each coin kind has a unique, positive integer value.
+
+Configuration. Each of the selection buttons corresponds to a kind of pop. The name of each kind of pop and its price can be specified (and changed). Selection buttons can share the same name or the same price or both.
+
+Loading and unloading. The machine can be loaded with a set of coins (for change) and a set of pops (to be sold). These can be unloaded from the machine at any time, along with any money that has been used to buy pops.
+
+Purchasing. Purchasing occurs by inserting an appropriate number of coins into the machine and pressing the appropriate button. If the value of the coins is sufficient to pay for the pop, the pop is dispensed and any change owing is returned. If the desired kind of pop is empty, nothing is returned and the state does not change. If the cost is higher than the value entered, nothing is returned and the state does not change. There is no coin return button on this version of the machine.
+
+Extracting pop and change. Pops and change are delivered to a delivery chute. These need to be extracted explicitly, else they remain there, accumulating.
+
+Checking. The contents extracted from the delivery chute and the contents extracted from inside the machine can be checked against expectations. The frontend is implemented to deal with this when the commands are issued to do so.
+
+Physical limits. This simulation does not need to be realistic, in that no physical limits are imposed. An effectively boundless number of coins and pops can exist, be moved around, and be stored.
+
