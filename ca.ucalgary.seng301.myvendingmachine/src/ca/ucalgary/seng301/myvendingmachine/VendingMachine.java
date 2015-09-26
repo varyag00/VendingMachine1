@@ -6,6 +6,7 @@
 
 package ca.ucalgary.seng301.myvendingmachine;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,9 +15,13 @@ import java.util.List;
 //each coin kind must have a unique value. Each value must be a positive integer. 
 //The final, semicolon-separated integer represents the number of selection buttons; it must be a positive integer.
 public class VendingMachine {
-	
+	//delivery shoot keeps track of pops
+	private DeliveryChute dc;
+	//used to keep track of revenue
+	private long payment;
 	//stores each coin with its corresponding count
 	private Coin[] PiggyBank;
+	//stores each button
 	private Button[] ButtonBank;
 	
 	//for synching pop counts across different buttons, might not need this if buttons have their own independent supply of pop
@@ -52,8 +57,13 @@ public class VendingMachine {
 		for (int i = 0; i< ButtonBank.length; i++){
 			ButtonBank[i] = new Button();
 		}
+
+		dc = new DeliveryChute();
+
+		payment = 0;
 	}
 
+	//configures the names and costs of pops aon the vending machine 
 	public void configurePops(List<String> popNames, List<Integer> popCosts){
 		//error checking
 		
@@ -77,6 +87,7 @@ public class VendingMachine {
 		}
 	}
 	
+	//loads coins + coin counts and pops + pop counts to the vending machine
 	public void load(List<Integer> coinCounts, List<Integer> popCounts){
 		//error checking
 		
@@ -100,8 +111,51 @@ public class VendingMachine {
 	
 	//This command causes the total value of remaining unused coins, total value of payment coins, 
 	//and individual names of unsold pops to be unloaded from the interior of the machine (for checking).
-	public List<Object> unload(){
+	public ArrayList<Object> unload(){
 		
+		ArrayList<Object> returnList = new ArrayList<Object>();
+		
+		//accumulating total value of remaining unused coins and adding it to list
+		long acc = 0;
+		for (Coin coin : PiggyBank){
+			acc += (coin.getValue() * coin.getCount());
+		}
+		returnList.add(acc);
+		
+		//adding total value of payment coins to list
+		returnList.add(payment - acc);
+	
+		//adding names of unsold pops
+		for (Button button : ButtonBank){
+			if (button.getPop().getCount() > 0){
+				returnList.add(button.getPop().getName());
+			}
+		}
+		
+		return returnList;
+	}
+	
+	//extracts and returns the contents of the vending machine's delivery chute
+	public ArrayList<Object> extract(){
+		
+		ArrayList<Object> returnList = new ArrayList<Object>();
+		
+		//adding change to return
+		if (!dc.returnChange().isEmpty()){
+			for (Coin coin : dc.returnChange()){
+				returnList.add(coin.getCount());
+			}
+		}
+		//adding pop to return
+		if(!dc.returnPop().isEmpty()){
+			for (Pop pop : dc.returnPop()){
+				returnList.add(pop.getName());
+			}
+		}
+		//clears delivery chute
+		dc.Extract();
+		
+		return returnList;
 	}
 }
 

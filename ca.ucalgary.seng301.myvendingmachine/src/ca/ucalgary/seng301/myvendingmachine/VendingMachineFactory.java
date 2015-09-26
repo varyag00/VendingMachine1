@@ -443,13 +443,18 @@ public class VendingMachineFactory implements IVendingMachineFactory {
 
     @Override
     public List<Object> extract() {
-	// TODO Replace this with a real implementation
-	return Collections.emptyList();
+	// TODO Replace this with a real implementation 	-- DONE
+    	return vm.extract();
     }
 
     @Override
     public void insert(int value) {
 	// TODO
+    	
+    	
+    	//remember to update payment!!!!
+    	
+    	
     }
 
     @Override
@@ -463,7 +468,7 @@ public class VendingMachineFactory implements IVendingMachineFactory {
     	
     	try {
 	    	//creates a new vending machine object with the specified arguments
-	    	VendingMachine vm = new VendingMachine (coinKinds, selectionButtonCount);
+	    	vm = new VendingMachine (coinKinds, selectionButtonCount);
     	}
     	catch (Exception e){
     		throw e;
@@ -484,7 +489,7 @@ public class VendingMachineFactory implements IVendingMachineFactory {
 
     @Override
     public void load(List<Integer> coinCounts, List<Integer> popCounts) {
-	// TODO
+	// TODO -- DONE
     	
     	try {
     		vm.load(coinCounts, popCounts);
@@ -496,7 +501,8 @@ public class VendingMachineFactory implements IVendingMachineFactory {
 
     @Override
     public List<Object> unload() {
-	// TODO Replace this with a real implementation
-	return Arrays.<Object> asList(0, 0);
+	// TODO Replace this with a real implementation 	--DONE
+    	
+    	return vm.unload();
     }
 }
