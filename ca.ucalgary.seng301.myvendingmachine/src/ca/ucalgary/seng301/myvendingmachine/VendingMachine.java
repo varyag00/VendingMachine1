@@ -106,7 +106,8 @@ public class VendingMachine {
 		//loading coin counts and pop counts
 		for (int i = 0; i < coinCounts.size(); i++){
 			PiggyBank[i].setCount(coinCounts.get(i));
-			
+		}
+		for (int i = 0; i < popCounts.size(); i++){
 			ButtonBank[i].getPop().setCount(popCounts.get(i));
 		}
 	}
@@ -133,7 +134,6 @@ public class VendingMachine {
 				returnList.add(button.getPop().getName());
 			}
 		}
-		
 		return returnList;
 	}
 	
@@ -179,6 +179,7 @@ public class VendingMachine {
 		}
 		
 		//return the coin via chute if not valid
+		total = 0;
 		ArrayList<Coin> change = new ArrayList<Coin>();
 		change.add(new Coin(value));
 	
@@ -206,14 +207,12 @@ public class VendingMachine {
 				change.add(new Coin(total - ButtonBank[butt].getPop().getCost()));
 				dc.addChange(change);
 				
-				//for updating payment, total = total - change
+				//for updating payment, total paid = total inserted - change given
 				total -= (total - ButtonBank[butt].getPop().getCost());
 			}
 		}
 		
-		//REMEMBER TO UPDATE PAYMENT
 		payment += total;
-		
 		total = 0;
 	}
 }

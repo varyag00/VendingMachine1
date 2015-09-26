@@ -20,3 +20,37 @@ Checking. The contents extracted from the delivery chute and the contents extrac
 
 Physical limits. This simulation does not need to be realistic, in that no physical limits are imposed. An effectively boundless number of coins and pops can exist, be moved around, and be stored.
 
+
+
+
+The CHECK_DELIVERY command
+Syntax:
+
+ "CHECK_DELIVERY" "(" <INTEGER> { "," <STRING> } ")"
+ 
+This command is used to check whether your vending machine behaves as expected. This command does not communicate with your vending machine, but checks whether it has already delivered what is expected.
+Purpose:
+
+The integer indicates the expected total value of all coins delivered (for example, as change). The sequence of strings indicates the kinds of pop that are expected to have been delivered.
+
+Correct examples:
+
+ CHECK_DELIVERY(0)
+ 
+ CHECK_DELIVERY(0, "Coke")
+ 
+The CHECK_TEARDOWN command
+Syntax:
+
+ "CHECK_TEARDOWN" "(" <INTEGER> ";" <INTEGER> [ ";" <STRING> { "," <STRING> } ] ")"
+ 
+Purpose:
+
+This command is used to check what is still inside the vending machine. The first number indicates the total value of the change still remaining for use. The second number indicates the total value of the coins entered as payment. The two numbers are separated by a semicolon. A sequence of comma-separated strings can follow these numbers. If present, it is separated by a semicolon. Each string represents a kind of pop that is expected to be found.
+
+Correct examples:
+
+ CHECK_TEARDOWN(0; 0; "Coke", "Water")
+ 
+ CHECK_TEARDOWN(1; 100)
+

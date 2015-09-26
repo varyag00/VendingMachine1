@@ -1,3 +1,9 @@
+/* Name: 	J. Daniel Gonzalez
+ * UCID: 	10058656
+ * Class: 	SENG301
+ * Ass:		1
+ */
+
 package ca.ucalgary.seng301.myvendingmachine;
 
 import java.io.FileNotFoundException;
@@ -449,14 +455,14 @@ public class VendingMachineFactory implements IVendingMachineFactory {
 
     @Override
     public void insert(int value) {
-	// TODO --DONE
+	// TODO -- DONE
     	
     	vm.insert(value);
     }
 
     @Override
     public void press(int value) {
-	// TODO
+	// TODO -- DONE
     	
     	vm.press(value);
     }
@@ -504,4 +510,5 @@ public class VendingMachineFactory implements IVendingMachineFactory {
     	
     	return vm.unload();
     }
+    
 }
