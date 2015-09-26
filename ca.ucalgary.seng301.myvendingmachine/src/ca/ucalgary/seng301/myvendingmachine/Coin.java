@@ -7,6 +7,6 @@ public class Coin{
 	
 	public Coin(int value){
 		this.value = value;
-		count = 0; 			//TODO: coin may need "positive integer value"
+		count = 0; 			
 	}
 }

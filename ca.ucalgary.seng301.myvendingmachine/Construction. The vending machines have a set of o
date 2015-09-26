@@ -1,5 +1,7 @@
 Construction. The vending machines have a set of one or more selection buttons and operate on a set of one or more coin kinds (these details cannot be changed once the machine is constructed). Each coin kind has a unique, positive integer value.
 
+	--DONE
+
 Configuration. Each of the selection buttons corresponds to a kind of pop. The name of each kind of pop and its price can be specified (and changed). Selection buttons can share the same name or the same price or both.
 
 Loading and unloading. The machine can be loaded with a set of coins (for change) and a set of pops (to be sold). These can be unloaded from the machine at any time, along with any money that has been used to buy pops.

@@ -459,28 +459,28 @@ public class VendingMachineFactory implements IVendingMachineFactory {
 
     @Override
     public void construct(List<Integer> coinKinds, int selectionButtonCount) {
-	// TODO
+	// TODO -- DONE
     	
-    	//must be at least one coin type
-    	if (coinKinds.size() == 0){
-    		throw new IllegalArgumentException("There must be at least one valid coin type");
+    	try {
+	    	//creates a new vending machine object with the specified arguments
+	    	VendingMachine vm = new VendingMachine (coinKinds, selectionButtonCount);
     	}
-    	
-    	//test for duplicates
-    	for (int i=0; i < coinKinds.size(); i++){
-    		for (int k = i+1; k < coinKinds.size(); k++){
-    			if (coinKinds.get(k) == coinKinds.get(i) && i != k)
-    	    		throw new IllegalArgumentException("Coin values must be unique");
-    		}
-    	}    	
-
-    	//creates a new vending machine object with the specified arguments
-    	VendingMachine vm = new VendingMachine (coinKinds, selectionButtonCount);
+    	catch (Exception e){
+    		throw e;
+    	}
     }
 
     @Override
     public void configure(List<String> popNames, List<Integer> popCosts) {
-	// TODO
+	// TODO -- DONE
+    	
+    	try {
+    		vm.configurePops(popNames, popCosts);
+    	}
+    	
+    	catch (Exception e){
+    		throw e;
+    	}
     }
 
     @Override

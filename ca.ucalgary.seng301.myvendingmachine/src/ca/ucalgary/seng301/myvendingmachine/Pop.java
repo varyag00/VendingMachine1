@@ -4,13 +4,14 @@ package ca.ucalgary.seng301.myvendingmachine;
 public class Pop {
 	private String name;
 	private int count;
+	private int cost;
 	
-	public Pop(String name){
+	public Pop(String name, int cost){
 		this.name = name;
+		this.cost = cost;
 	}
 
-	
-	//accessor and mutators
+	//accessors and mutators
 	public void setCount(int count){
 		this.count = count;
 	}
@@ -21,5 +22,14 @@ public class Pop {
 	public void setName(String name){
 		this.name = name;
 	}
-	public void
+	public String getName(){
+		return name;
+	}
+	
+	public void setCost(int price){
+		this.cost = price;
+	}
+	public int getCost(){
+		return cost;
+	}
 }
