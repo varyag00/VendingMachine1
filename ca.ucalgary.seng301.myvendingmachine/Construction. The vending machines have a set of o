@@ -14,6 +14,8 @@ Purchasing. Purchasing occurs by inserting an appropriate number of coins into t
 
 Extracting pop and change. Pops and change are delivered to a delivery chute. These need to be extracted explicitly, else they remain there, accumulating.
 
+	--DONE
+
 Checking. The contents extracted from the delivery chute and the contents extracted from inside the machine can be checked against expectations. The frontend is implemented to deal with this when the commands are issued to do so.
 
 Physical limits. This simulation does not need to be realistic, in that no physical limits are imposed. An effectively boundless number of coins and pops can exist, be moved around, and be stored.

@@ -15,10 +15,11 @@ import java.util.List;
 //each coin kind must have a unique value. Each value must be a positive integer. 
 //The final, semicolon-separated integer represents the number of selection buttons; it must be a positive integer.
 public class VendingMachine {
+	private int total;
 	//delivery shoot keeps track of pops
 	private DeliveryChute dc;
 	//used to keep track of revenue
-	private long payment;
+	private int payment;
 	//stores each coin with its corresponding count
 	private Coin[] PiggyBank;
 	//stores each button
@@ -61,6 +62,7 @@ public class VendingMachine {
 		dc = new DeliveryChute();
 
 		payment = 0;
+		total = 0;
 	}
 
 	//configures the names and costs of pops aon the vending machine 
@@ -157,6 +159,64 @@ public class VendingMachine {
 		
 		return returnList;
 	}
+
+	//An error will occur if the integer is not positive. The coin will immediately be deposited in the delivery chute 
+	//if its value does not correspond to a coin kind supported by the current vending machine.
+	public void insert(int value){
+		
+		//error checking
+		if (value < 1)
+			throw new IllegalArgumentException("Coin value must be positive");
+		
+		//checking if value is a valid coin type
+		Boolean valid = false;
+		for (Coin coin : PiggyBank){
+			//if value is valid, add it to the total and return
+			if (value == coin.getValue()){
+				total += value;
+				return;
+			}
+		}
+		
+		//return the coin via chute if not valid
+		ArrayList<Coin> change = new ArrayList<Coin>();
+		change.add(new Coin(value));
+	
+		dc.addChange(change);
+	}
+	
+	//touch the butt
+	public void press(int butt){
+		
+		//error checking
+		if (butt < 0)
+			throw new IllegalArgumentException("Index of button pressed cannot be negative");
+		if (butt > ButtonBank.length - 1)
+			throw new IllegalArgumentException("Index of button pressed is out of bounds");
+		
+		//valid button pressed will result in pop and change being dispensed (if total >= pop cost)
+		if (total >= ButtonBank[butt].getPop().getCost()){
+			//if there is pop
+			if (ButtonBank[butt].getPop().buyPop())
+				dc.addPop(ButtonBank[butt].getPop());
+			
+			//return change if applicable
+			if (total > ButtonBank[butt].getPop().getCost()){
+				ArrayList<Coin> change = new ArrayList<Coin>();
+				change.add(new Coin(total - ButtonBank[butt].getPop().getCost()));
+				dc.addChange(change);
+				
+				//for updating payment, total = total - change
+				total -= (total - ButtonBank[butt].getPop().getCost());
+			}
+		}
+		
+		//REMEMBER TO UPDATE PAYMENT
+		payment += total;
+		
+		total = 0;
+	}
 }
+
 
 

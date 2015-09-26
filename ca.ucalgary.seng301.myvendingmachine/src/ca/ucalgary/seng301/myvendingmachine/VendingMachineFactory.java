@@ -449,17 +449,16 @@ public class VendingMachineFactory implements IVendingMachineFactory {
 
     @Override
     public void insert(int value) {
-	// TODO
+	// TODO --DONE
     	
-    	
-    	//remember to update payment!!!!
-    	
-    	
+    	vm.insert(value);
     }
 
     @Override
     public void press(int value) {
 	// TODO
+    	
+    	vm.press(value);
     }
 
     @Override

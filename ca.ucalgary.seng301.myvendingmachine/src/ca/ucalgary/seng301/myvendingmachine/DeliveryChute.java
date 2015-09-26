@@ -13,16 +13,21 @@ public class DeliveryChute {
 		isEmpty = true;
 	}
 	
+	//adds pop to the extract queue
 	public void addPop(Pop pop){
 		popChute.add(pop);
+		
+		isEmpty = false;
 	}
 	
+	//adds change to the extract queue
 	public void addChange(ArrayList<Coin> change){
-		//only add coins to chute if change is due
-		if(!change.isEmpty()){
-			for (Coin coin: change){
-				changeChute.add(coin);
-			}
+
+		for (Coin coin: change){
+			changeChute.add(coin);
+			
+			if (coin.getValue() != 0)
+				isEmpty = false;
 		}
 	}
 	

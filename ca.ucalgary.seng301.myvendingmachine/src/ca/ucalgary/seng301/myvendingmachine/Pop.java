@@ -32,4 +32,14 @@ public class Pop {
 	public int getCost(){
 		return cost;
 	}
+	
+	//returns true if there is stock of this pop (and decreases count by one)
+	public boolean buyPop(){
+		if (count > 0) {
+			count --;
+			return true;
+		}
+		
+		return false;
+	}
 }
